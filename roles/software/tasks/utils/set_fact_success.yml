@@ -1,0 +1,16 @@
+---
+
+# Set success
+- set_fact:
+    cacheable: true
+    sas_software:  
+      unreachable: false
+      failed: false
+      changed: "{{ result.changed | default(False) }}"
+      msg: ''
+    sas_common: 
+      unreachable: false 
+      failed: false
+      changed: "{{ result.changed | default(False) }}"
+      msg: '' 
+  when: software_reports_generate or software_facts_generate

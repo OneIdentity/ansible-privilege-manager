@@ -1,0 +1,16 @@
+---
+
+# Set success
+- set_fact:
+    cacheable: true
+    sas_join:  
+      unreachable: false
+      failed: false
+      changed: "{{ result.changed | default(False) }}"
+      msg: ''
+    sas_common: 
+      unreachable: false 
+      failed: false
+      changed: "{{ result.changed | default(False) }}"
+      msg: ''
+  when: join_reports_generate or join_facts_generate

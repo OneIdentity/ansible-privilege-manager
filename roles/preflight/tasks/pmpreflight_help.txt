@@ -1,0 +1,76 @@
+Usage:
+ pmpreflight --sudo
+ pmpreflight
+             [--csv | --verbose | --simple]
+             [--policyserver policy_server]
+             [--policyport policy_server_port]
+             [--encryption aes|tripledes|des]
+             [--kerberos [principal] [--kerberos-keytab keytab_path]]
+             [--non-reserved-source-port]
+             [--no-ping]
+
+ pmpreflight --pmpolicy
+             [--csv | --verbose | --simple]
+             [--policyserver policy_server]
+             [--policyport policy_server_port]
+             [--agentport agent_service_port]
+             [--tunnelport agent_service_port]
+             [--encryption aes|tripledes|des]
+             [--kerberos [principal] [--kerberos-keytab keytab_path]]
+             [--non-reserved-source-port]
+             [--no-ping]
+
+ pmpreflight --server
+             [--csv | --verbose | --simple]
+             [--policyport policy_server_port]
+             [--agentport agent_service_port]
+             [--encryption aes|tripledes|des]
+             [--kerberos [principal] [--kerberos-keytab keytab_path]]
+
+ pmpreflight --version | -v
+
+ pmpreflight --help | -h
+
+
+Choose the Test Suite
+
+  --server           Run Preflight tests for a Privilege Manager server
+                     install.
+  --sudo             Run Preflight tests for the sudo plugin client.
+  --pmpolicy         Run Preflight tests for Privilege Manager for Unix clients.
+
+
+Output
+
+  --csv              Output the test results in CSV format.
+  --verbose          Be verbose when outputting in human-readable format.
+  --simple           Reduced output in human-readable format.
+  --help             Display this usage message and exit.
+  --version          Display the version and exit.
+
+
+Test Conditions
+
+  --policyserver     Hostname or IP address for a policy server.
+                     Multiple policy servers may be specified by passing this
+                     option as many times as required.
+  --policyport       Port number for the policy servers.
+  --agentport        Port number for the agent service (only used when testing
+                     Privilege Manager For Unix clients).
+  --tunnelport       Port number for the tunnel service (only used when testing
+                     Privilege Manager For Unix clients).
+  --encryption       Specify a specific encryption setting to connect to the
+                     server. Only required for servers older than Privilege Manager 
+                     For Unix version 5.6. Allowed options are aes, tripledes, or des.
+  --kerberos         Enable kerberos. Use the specified principal name if
+                     provided.
+  --kerberos-keytab   
+                     Use the specified keytab file for kerberos authentication.
+  --no-ping          Prevent testing connectivity to the servers using ping.
+                     May be required in some environments where firewalls
+                     block ICMP packets.
+  --non-reserved-source-port   
+                     Use a source port from the non-reserved range when testing
+                     client connectivty to the server. Required only when
+                     configured on the server.
+

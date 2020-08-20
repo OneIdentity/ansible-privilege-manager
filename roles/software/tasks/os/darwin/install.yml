@@ -1,0 +1,17 @@
+---
+
+# ------------------------------------------------------------------------------
+# Darwin - install package 
+# ------------------------------------------------------------------------------
+
+# Copy installer
+- include_tasks: utils/package_copy.yml
+
+# Install package
+- name: install pkg
+  block:
+
+    # Run installer
+    - name: install {{ package_key }} 
+      command: /usr/sbin/installer -pkg {{ package_dest }} -target /
+      register: pkg_install 

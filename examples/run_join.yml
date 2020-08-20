@@ -1,0 +1,24 @@
+---
+
+- hosts: all 
+  gather_facts: false
+
+  # The variables you would most likely want/need to override have been included
+  vars:
+
+    # Join
+    join_server: 10.10.10.10
+    join_state: joined
+    join_password: pass
+    join_extra_args:
+
+    # Facts
+    join_facts_generate: true
+    join_facts_verbose: false
+
+    # Reports
+    join_reports_generate: true
+    join_reports_backup: false 
+
+  roles:
+    - name: oneidentity.privilege_manager.join

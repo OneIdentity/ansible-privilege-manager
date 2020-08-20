@@ -1,0 +1,71 @@
+---
+
+# Required keys 
+# ------------------------------------------------------------------------------
+
+# This can be a company/brand or product namespace under which all content lives
+namespace: oneidentity
+
+# The designation of this collection
+name: privilege_manager 
+
+# Semantic versioning compliant version designation
+version: "0.0.1"
+
+# The path do the Markdown(.md) readme file
+readme: README.md
+
+# List of the collection's content authors: 'Full Name <email> (http://site)'
+authors:
+  - "Mark Stillings <mark.stillings@oneidentity.com>"
+
+
+# Optional keys
+# ------------------------------------------------------------------------------
+
+# Short description of collection
+description: >
+  The One Identity Privilege Manager collection includes roles, modules, 
+  plugins, report templates, and sample playbooks to automate software deployment, 
+  configuration, policy server joining, monitoring, and report generation
+  for Privilege Manager. 
+
+# A valid SPDX license identifier https://spdx.org/licenses/
+license: Apache-2.0
+
+# List of keywords to associate with collection for indexing/searching systems
+tags:
+- oneidentity
+- quest
+- safeguard
+- privilege
+- manager
+- activedirectory
+- ad
+- iam
+- identity
+- access
+- management
+- sso
+- unix
+- linux
+- macos
+- solaris
+- aix
+- hpux
+
+
+# URL keys
+# ------------------------------------------------------------------------------
+
+# URL of originating repository
+repository: https://github.com/OneIdentity/ansible-privilege-manager
+
+# URL to online docs
+documentation: https://github.com/OneIdentity/ansible-privilege-manager/tree/master/docs
+
+# Homepage of the collection/project
+homepage: https://www.oneidentity.com/products/privilege-manager-for-sudo
+
+# Issue tracking URL
+issues: https://github.com/OneIdentity/ansible-privilege-manager/issues

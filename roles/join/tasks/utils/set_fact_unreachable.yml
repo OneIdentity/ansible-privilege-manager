@@ -1,0 +1,24 @@
+---
+
+# Set unreachable
+- set_fact:
+    cacheable: true
+    sas_join:
+      unreachable: true
+      failed: true
+      changed: "{{ result.changed | default(False) }}"
+      msg: |
+        join:
+        {{ result.msg | default('Unexpected error') }}
+    sas_common: 
+      unreachable: true
+      failed: true
+      changed: "{{ result.changed | default(False) }}"
+      msg: |
+        join:
+        {{ result.msg | default('Unexpected error') }}
+  when: join_reports_generate or join_facts_generate
+
+# Propogate fail
+- fail:
+    msg: "{{ result.msg | default('Unexpected error') }}"

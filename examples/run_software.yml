@@ -1,0 +1,28 @@
+---
+
+- hosts: all 
+  gather_facts: false
+
+  # The variables you would most likely want/need to override have been included
+  vars:
+
+    # Software
+    software_pkg_state:
+      server: check
+      agent: check
+      plugin: check
+
+    # Directories
+    software_dir: "./files/6.1.1.0"
+    software_tmp_dir: /tmp/1id
+
+    # Facts
+    software_facts_generate: true
+    software_facts_verbose: false
+
+    # Reports
+    software_reports_generate: true
+    software_reports_backup: false 
+
+  roles:
+    - name: oneidentity.privilege_manager.software

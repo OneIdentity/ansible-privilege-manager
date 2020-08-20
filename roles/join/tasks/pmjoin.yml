@@ -1,0 +1,19 @@
+---
+
+# pmjoin
+- name: pmjoin {{ join_state }} 
+  pmjoin:
+    state: "{{ join_state }}" 
+    server: "{{ join_server }}" 
+    password: "{{ join_password }}" 
+    extra_args: "{{ join_extra_args }}" 
+    facts: "{{ join_facts_generate or join_reports_generate }}"
+    facts_verbose: "{{ join_facts_verbose }}"
+    facts_key: sas_join_pmjoin
+  register: result
+  failed_when: false
+
+# Fail if there was a message returned
+- fail:
+    msg: "{{ result.msg }}"
+  when: result.msg
