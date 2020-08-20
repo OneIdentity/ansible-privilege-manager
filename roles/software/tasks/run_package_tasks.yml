@@ -1,0 +1,40 @@
+---
+
+# Read package versions before changes
+- include_tasks: read_package_version.yml
+  vars:
+    package_key: "{{ item.key }}"
+    package_name: "{{ software_pkgs['packages'][item.key]['name'] }}"
+    state: "{{ item.value }}"
+    flag: beg
+  when: "item.key in software_pkgs['packages']"
+  loop: "{{ software_pkg_state | oneidentity.privilege_manager.pkgdict2items }}"
+
+# Create temporary directory
+- include_tasks: temp_dir_create.yml
+  when: 
+    - "'present' in software_pkg_state.values()"
+
+# Perform package tasks  
+- include_tasks: run_package_task.yml
+  vars:
+    package_key: "{{ item.key }}"
+    package_name: "{{ software_pkgs['packages'][item.key]['name'] }}"
+    state: "{{ item.value }}"
+  when: "item.key in software_pkgs['packages']"
+  loop: "{{ software_pkg_state | oneidentity.privilege_manager.pkgdict2items }}"
+
+# Remove temporary directory 
+# - include_tasks: temp_dir_delete.yml
+#   when: 
+#     - "'present' in software_pkg_state.values()"
+
+# Read package versions after changes
+- include_tasks: read_package_version.yml
+  vars:
+    package_key: "{{ item.key }}"
+    package_name: "{{ software_pkgs['packages'][item.key]['name'] }}"
+    state: "{{ item.value }}"
+    flag: end
+  when: "item.key in software_pkgs['packages']"
+  loop: "{{ software_pkg_state | oneidentity.privilege_manager.pkgdict2items }}"

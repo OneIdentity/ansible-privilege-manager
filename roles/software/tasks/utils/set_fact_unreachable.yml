@@ -1,0 +1,24 @@
+---
+
+# Set unreachable
+- set_fact:
+    cacheable: true
+    sas_software:
+      unreachable: true
+      failed: true
+      changed: "{{ result.changed | default(False) }}"
+      msg: |
+        software:
+        {{ result.msg | default('Unexpected error') }}
+    sas_common: 
+      unreachable: true
+      failed: true
+      changed: false
+      msg: |
+        software:
+        {{ result.msg | default('Unexpected error') }}
+  when: software_reports_generate or software_facts_generate
+
+# Propogate fail
+- fail:
+    msg: "{{ result.msg | default('Unexpected error') }}"

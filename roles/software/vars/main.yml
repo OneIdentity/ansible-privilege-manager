@@ -1,0 +1,24 @@
+---
+
+# Supported OS families
+software_os_families:
+- debian
+- redhat
+- freebsd
+- solaris
+- suse
+- darwin
+- hp-ux
+- aix
+
+# Copy install package path to variable
+package_src: "{{ software_pkgs['packages'][package_key]['path'] }}"
+
+# Copy install package file name variable
+package_file: "{{ software_pkgs['packages'][package_key]['file'] }}"
+
+# Copy package destination directory to variable
+package_dest_dir: "{{ software_tmp_dir }}/"
+
+# Copye package destination file path to variable
+package_dest: "{{ package_dest_dir }}{{ package_file }}"

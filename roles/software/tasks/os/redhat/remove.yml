@@ -1,0 +1,11 @@
+---
+
+# ------------------------------------------------------------------------------
+# Redhat - remove package 
+# ------------------------------------------------------------------------------
+
+# Remove package
+- name: remove {{ package_key }}
+  command: 
+    cmd: rpm -e --nodeps {{ package_name }}
+  register: pkg_remove 

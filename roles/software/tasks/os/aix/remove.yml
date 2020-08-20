@@ -1,0 +1,17 @@
+---
+
+# ------------------------------------------------------------------------------
+# AIX - remove package
+# ------------------------------------------------------------------------------
+
+# Cleanup any failed installation before removal
+- name: cleanup before removal of {{ package_key }}
+  command:
+    cmd: installp -C {{ package_name }}
+  register: pkg_remove
+
+# Remove package
+- name: remove {{ package_key }}
+  command:
+    cmd: installp -u {{ package_name }}
+  register: pkg_remove

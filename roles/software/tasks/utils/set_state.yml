@@ -1,0 +1,6 @@
+---
+
+# Set state 
+- set_fact: |
+    sas_software_{{ package_key | replace('qpm-', '') }}_{{ flag }}={{ value }}
+    | cacheable=true

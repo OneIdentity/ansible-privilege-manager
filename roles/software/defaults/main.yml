@@ -1,0 +1,50 @@
+---
+
+# Software state
+# ------------------------------------------------------------------------------
+
+# State values:
+# - check: check only, no changes to system
+# - present: ensure installed and the same version as in software_dir
+# - absent: ensure not intalled 
+software_pkg_state:
+  server: check 
+  agent: check 
+  plugin: check 
+
+
+# Facts settings
+# ------------------------------------------------------------------------------
+
+software_facts_generate: "{{ facts_generate }}"
+software_facts_verbose: "{{ facts_verbose }}"
+
+
+# Reports settings
+# ------------------------------------------------------------------------------
+
+software_reports_generate: "{{ reports_generate }}"
+software_reports_backup: "{{ reports_backup }}"
+
+# Format of details section in both HTML and CSV reports
+# Valid options are: 'yaml' or 'json'
+software_reports_details_format: "{{ reports_details_format }}"
+
+# On which host should the reports be generated.
+# TODO: This has only been tested on the Ansible control node (127.0.0.1)
+software_reports_host: "{{ reports_host }}"
+
+# List of reports to generate
+# src:  Is the report template file on the Ansible control node.
+#       With no or relative path Ansible will look in the client_sw role template directory.  
+#       Full path to find the template files elsewhere on the Ansible control node. 
+# dest: Is the destination file on the host (client_sw_reports_host.) 
+#       With no or relative path when the destination is the Ansible control node.
+#       (client_sw_reports_host = 127.0.0.1) relative to the playbook directory.
+#       Full path for other locations or on other hosts.  
+#       In either case the directory must already exist.
+software_reports: 
+  - src:  software_report.csv.j2   
+    dest: software_report.csv
+  - src:  software_report.html.j2
+    dest: software_report.html

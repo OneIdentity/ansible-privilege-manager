@@ -1,0 +1,30 @@
+---
+
+- hosts: all 
+  gather_facts: false
+
+  # The variables you would most likely want/need to override have been included
+  vars:
+
+    # Join
+    join_server: 10.10.10.10
+
+    # Preflight
+    preflight_mode: sudo
+    preflight_verbose: false
+    preflight_extra_args:
+
+    # Directories
+    software_dir: "./files/6.1.1.0"
+    software_tmp_dir: /tmp/1id
+
+    # Facts
+    preflight_facts_generate: true
+    preflight_facts_verbose: false
+
+    # Reports
+    preflight_reports_generate: true
+    preflight_reports_backup: false 
+
+  roles:
+    - name: oneidentity.privilege_manager.preflight

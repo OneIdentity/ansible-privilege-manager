@@ -1,0 +1,12 @@
+---
+
+# Generate reports (this runs once after all hosts are done)
+- name: generate reports
+  template:
+    src:  "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    backup: "{{ software_reports_backup }}"
+  with_items: "{{ software_reports }}"
+  delegate_to: "{{ software_reports_host }}"    
+  run_once: true
+  changed_when: false
