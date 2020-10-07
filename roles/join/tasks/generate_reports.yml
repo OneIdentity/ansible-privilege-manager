@@ -7,6 +7,6 @@
     dest: "{{ item.dest }}"
     backup: "{{ join_reports_backup }}"
   with_items: "{{ join_reports }}"
-  delegate_to: "{{ join_reports_host }}"    
+  delegate_to: "{{ join_reports_host }}"
   run_once: true
   changed_when: false

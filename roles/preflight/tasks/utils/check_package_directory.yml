@@ -4,14 +4,14 @@
 - name: software install package directory check and parse
   software_pkgs:
     mode: "{{ preflight_mode }}"
-    sys: "{{ ansible_facts['system'] }}" 
-    dist: "{{ ansible_facts['os_family'] }}" 
-    arch: "{{ ansible_facts['architecture'] }}" 
-    path: "{{ software_dir }}" 
+    sys: "{{ ansible_facts['system'] }}"
+    dist: "{{ ansible_facts['os_family'] }}"
+    arch: "{{ ansible_facts['architecture'] }}"
+    path: "{{ software_dir }}"
     facts: false
   delegate_to: "{{ software_host }}"
   failed_when: false
-  register: software_pkgs 
+  register: software_pkgs
 
 # Fail if there was a message returned
 - fail:

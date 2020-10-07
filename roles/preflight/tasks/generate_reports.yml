@@ -7,6 +7,6 @@
     dest: "{{ item.dest }}"
     backup: "{{ preflight_reports_backup }}"
   with_items: "{{ preflight_reports }}"
-  delegate_to: "{{ preflight_reports_host }}"    
+  delegate_to: "{{ preflight_reports_host }}"
   run_once: true
   changed_when: false

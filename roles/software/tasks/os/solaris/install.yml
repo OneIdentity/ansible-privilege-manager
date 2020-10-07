@@ -18,9 +18,9 @@
 - name: install {{ package_key }}
   svr4pkg:
     name: "{{ package_name }}"
-    state: present 
+    state: present
     src: "{{ package_dest }}"
-    response_file: "{{ package_dest_dir }}install.response" 
+    response_file: "{{ package_dest_dir }}install.response"
   #command:
   #  cmd: pkgadd -d {{ package_dest }} -r {{ package_dest_dir }}/install.response all
-  register: pkg_install 
+  register: pkg_install

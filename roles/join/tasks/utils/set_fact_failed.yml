@@ -4,14 +4,14 @@
 - set_fact:
     cacheable: true
     sas_join:
-      unreachable: false 
+      unreachable: false
       failed: true
       changed: "{{ result.changed | default(False) }}"
       msg: |
         join:
         {{ result.msg | default('Unexpected error') }}
-    sas_common: 
-      unreachable: false 
+    sas_common:
+      unreachable: false
       failed: true
       changed: "{{ result.changed | default(False) }}"
       msg: |

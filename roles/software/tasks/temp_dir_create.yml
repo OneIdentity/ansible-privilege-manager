@@ -1,10 +1,10 @@
 ---
 
 # Create temporary directory on host
-- name: create temp directory {{ package_dest_dir }} 
+- name: create temp directory {{ package_dest_dir }}
   file:
     path: "{{ package_dest_dir }}"
-    state: directory 
+    state: directory
   ignore_errors: true
   changed_when: false
   register: result

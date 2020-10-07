@@ -8,4 +8,4 @@
 - name: remove {{ package_key }}
   command:
     cmd: swremove {{ package_name }}
-  register: pkg_remove 
+  register: pkg_remove

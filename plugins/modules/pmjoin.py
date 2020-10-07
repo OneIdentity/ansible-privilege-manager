@@ -135,7 +135,6 @@ import sys
 import subprocess
 import re
 import ansible_collections.oneidentity.privilege_manager.plugins.module_utils.pmjoin as pmj
-import ansible_collections.oneidentity.privilege_manager.plugins.module_utils.check_file_exec as cfe
 
 
 # ------------------------------------------------------------------------------
@@ -235,7 +234,6 @@ def run_normal(params, result):
 
     # Return data
     err = None
-    version = ''
     changed = False
     output = ''
 
@@ -250,7 +248,7 @@ def run_normal(params, result):
 
     # Check pmjoin
     err, pmjoin_path, pminfo_path, pmjoin_version = pmj.pmjoin_find()
-    
+
     # Run pmjoin
     if err is None:
         err, changed, output = run_pmjoin(
@@ -272,7 +270,7 @@ def run_normal(params, result):
         result_facts['path'] = pmjoin_path
         result_facts['version'] = pmjoin_version
         if facts_verbose:
-            result_facts['output'] = output 
+            result_facts['output'] = output
         result['ansible_facts'] = {facts_key: result_facts}
 
     # Return
@@ -353,15 +351,13 @@ def run_pmjoin_join(
     cmd += [path]
     cmd += ['-b']
     cmd += ['-a']
-    #cmd += ['-q']
+    # cmd += ['-q']
     cmd += [server]
     cmd += [extra_args] if extra_args else []
 
     # Call vastool
     try:
         rval_bytes = subprocess.check_output(' '.join(cmd), stderr=subprocess.STDOUT, shell=True)
-        #p = subprocess.Popen(' '.join(cmd), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
-        #rval_bytes = p.communicate(input=password.encode(sys.stdin.encoding))[0]
     # This exception happens when the process exits with a non-zero return code
     except subprocess.CalledProcessError as e:
         # Just grab output bytes likes a normal exit, we'll parse it for errors anyway

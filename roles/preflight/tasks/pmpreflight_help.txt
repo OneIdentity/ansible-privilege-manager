@@ -60,16 +60,16 @@ Test Conditions
   --tunnelport       Port number for the tunnel service (only used when testing
                      Privilege Manager For Unix clients).
   --encryption       Specify a specific encryption setting to connect to the
-                     server. Only required for servers older than Privilege Manager 
+                     server. Only required for servers older than Privilege Manager
                      For Unix version 5.6. Allowed options are aes, tripledes, or des.
   --kerberos         Enable kerberos. Use the specified principal name if
                      provided.
-  --kerberos-keytab   
+  --kerberos-keytab
                      Use the specified keytab file for kerberos authentication.
   --no-ping          Prevent testing connectivity to the servers using ping.
                      May be required in some environments where firewalls
                      block ICMP packets.
-  --non-reserved-source-port   
+  --non-reserved-source-port
                      Use a source port from the non-reserved range when testing
                      client connectivty to the server. Required only when
                      configured on the server.

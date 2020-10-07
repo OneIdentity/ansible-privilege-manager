@@ -195,14 +195,14 @@ MODE_CHOICES = ['all', 'server', 'pmpolicy', 'sudo']
 PKG_SUB_DIRS = {
     'server': 'server',
     'pmpolicy': 'agent',
-    'sudo': 'sudo_plugin' 
+    'sudo': 'sudo_plugin'
 }
 
 # Package keys
 PKG_KEYS = {
     'server': 'server',
     'agent': 'agent',
-    'sudo_plugin': 'plugin' 
+    'sudo_plugin': 'plugin'
 }
 
 
@@ -409,18 +409,9 @@ def find_packages(sw_path, sub_dir, sys, dist, arch):
         print('pkgs_path: ' + pkgs_path)
         err, packages = parse_packages(pkgs_path, pkgs_ext, pkgs_key)
 
-    # NOTE: Authentication Services macOS packages are grouped into dmg files,
-    #       so need to do some post-processing
-    #if not err and sys == 'darwin':
-    #    err, packages = process_macos_packages(packages)
-
     # Find preflight
     if not err:
         packages['pmpreflight'] = find_preflight(pkgs_path)
-
-    # Check for no packages found
-    #if not err and not packages:
-    #    err = 'No packages found at ' + sw_path + ' for sys=' + sys + ', dist=' + dist + ', arch=' + arch
 
     # Return
     return err, packages
@@ -485,7 +476,6 @@ def parse_packages(path, ext, pkg_key):
     # regex strings
     pkg_name_re_str = r'^[a-z]+[-]*[a-z]*(?=\D)'
     pkg_vers_re_str = r'(?=.*)[\d]+\.[\d]+\.[\d]+[\.-][\d]+(?=\D)'
-    #pkg_vers_re_str = r'(?=.*)[\d]+\.[\d]+\.[\d]+[\.-][\d]+(?=\D\D)'
 
     # Compile regex's
     pkg_name_re = re.compile(pkg_name_re_str, re.I)
@@ -504,7 +494,6 @@ def parse_packages(path, ext, pkg_key):
         pkg_name = None
         pkg_name_match = pkg_name_re.search(pkg_file)
         if pkg_name_match:
-            #pkg_name = pkg_name_match.group().lower()
             pkg_name = pkg_name_match.group()
 
         pkg_vers = ''
@@ -520,10 +509,6 @@ def parse_packages(path, ext, pkg_key):
                     'file': pkg_file,
                     'vers': pkg_vers
                 }
-
-    # Check for no packages found
-    #if len(packages) == 0:
-    #    err = 'no packages found'
 
     return err, packages
 

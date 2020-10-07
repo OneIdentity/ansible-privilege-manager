@@ -1,13 +1,13 @@
 ---
 
-# Required keys 
+# Required keys
 # ------------------------------------------------------------------------------
 
 # This can be a company/brand or product namespace under which all content lives
 namespace: oneidentity
 
 # The designation of this collection
-name: privilege_manager 
+name: privilege_manager
 
 # Semantic versioning compliant version designation
 version: "0.0.1"
@@ -25,10 +25,10 @@ authors:
 
 # Short description of collection
 description: >
-  The One Identity Privilege Manager collection includes roles, modules, 
-  plugins, report templates, and sample playbooks to automate software deployment, 
+  The One Identity Privilege Manager collection includes roles, modules,
+  plugins, report templates, and sample playbooks to automate software deployment,
   configuration, policy server joining, monitoring, and report generation
-  for Privilege Manager. 
+  for Privilege Manager.
 
 # A valid SPDX license identifier https://spdx.org/licenses/
 license: Apache-2.0

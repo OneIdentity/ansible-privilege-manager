@@ -1,6 +1,6 @@
 ---
 
-- hosts: all 
+- hosts: all
   gather_facts: false
 
   # The variables you would most likely want/need to override have been included
@@ -18,7 +18,7 @@
 
     # Reports
     join_reports_generate: true
-    join_reports_backup: false 
+    join_reports_backup: false
 
   roles:
     - name: oneidentity.privilege_manager.join

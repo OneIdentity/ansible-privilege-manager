@@ -1,6 +1,6 @@
 ---
 
-- hosts: all 
+- hosts: all
   gather_facts: false
 
   # The variables you would most likely want/need to override have been included
@@ -24,7 +24,7 @@
 
     # Reports
     preflight_reports_generate: true
-    preflight_reports_backup: false 
+    preflight_reports_backup: false
 
   roles:
     - name: oneidentity.privilege_manager.preflight

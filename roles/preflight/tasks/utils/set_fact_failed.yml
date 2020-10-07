@@ -4,19 +4,19 @@
 - set_fact:
     cacheable: true
     sas_preflight:
-      unreachable: false 
+      unreachable: false
       failed: true
       changed: "{{ result.changed | default(False) }}"
       msg: |
         preflight:
         {{ result.msg | default('Unexpected error') }}
-    sas_common: 
-      unreachable: false 
+    sas_common:
+      unreachable: false
       failed: true
       changed: "{{ result.changed | default(False) }}"
       msg: |
         preflight:
-        {{ result.msg | default('Unexpected error') }} 
+        {{ result.msg | default('Unexpected error') }}
   when: preflight_reports_generate or preflight_facts_generate
 
 # Propogate fail

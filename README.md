@@ -2,7 +2,7 @@
 
 # Privilege Manager Ansible Collection
 
-The One Identity Privilege Manager Ansible Collection, referred to as `ansible-privilege-manager`, consists of roles, modules, plugins, report templates, and sample playbooks to automate software deployment, configuration, policy server joining, and report generation for [Privilege Manager](https://www.oneidentity.com/products/privilege-manager-for-sudo/). 
+The One Identity Privilege Manager Ansible Collection, referred to as `ansible-privilege-manager`, consists of roles, modules, plugins, report templates, and sample playbooks to automate software deployment, configuration, policy server joining, and report generation for [Privilege Manager](https://www.oneidentity.com/products/privilege-manager-for-sudo/).
 
 ## Collection Contents
 
@@ -12,10 +12,10 @@ The One Identity Privilege Manager Ansible Collection, referred to as `ansible-p
     * [`preflight module`](roles/preflight/README.md#plugins) Performs preflight tasks on host.
 
 * [`software role`](roles/software/README.md): Server and client software install, upgrade, downgrade, uninstall, and version checking.
-    * [`software_pkgs module`](roles/software/README.md#plugins) Server and client software install package directory checking. 
+    * [`software_pkgs module`](roles/software/README.md#plugins) Server and client software install package directory checking.
     * [`pkgdict2items filter`](roles/software/README.md#plugins) Server and client software package sorting by state and name.
 
-* [`join role`](roles/join/README.md): Client Policy Server joining/unjoining. 
+* [`join role`](roles/join/README.md): Client Policy Server joining/unjoining.
     * [`pmjoin module`](roles/join/README.md#plugins) Performs Policy Server join/unjoin tasks on host.
 
 ## Installation
@@ -32,7 +32,7 @@ The One Identity Privilege Manager Ansible Collection, referred to as `ansible-p
     * See collection role documentation for specific, per-role  requirements and instructions.
     * See [Privilege Manager documentation](https://support.oneidentity.com/privilege-manager-for-sudo/6.1.1/technical-documents) for requirements and instructions.
 
-### From Ansible Galaxy 
+### From Ansible Galaxy
 
 To install from [Ansible Galaxy](https://galaxy.ansible.com/) you can use the [ansible-galaxy](https://docs.ansible.com/ansible/latest/cli/ansible-galaxy.html) command to install the collection on your control node.  See [Ansible documentation](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html#installing-collections) for futher information.
 
@@ -129,7 +129,7 @@ When used with [Ansible Tower](https://www.ansible.com/products/tower) and [Ansi
 
 ## Usage
 
-The collection provides various sample playbooks in the [examples](examples/README.md) directory. 
+The collection provides various sample playbooks in the [examples](examples/README.md) directory.
 
 ## Supported Platforms
 
@@ -142,5 +142,5 @@ All [Privilege Manager supported platforms](https://support.oneidentity.com/tech
 * Check mode does not work as expected for the software role.  No changes are made and it doesn't cause errors but the stated changes that would or would not be made if run normally are not accurate.
 * The directory of software install packages has to be on the Ansible control node.  It would be nice to be able to point to this directory on another machine but this is not possible at this time.
 * The IPV4 address for HP-UX machines does not show up in the CSV and HTML reports, this is due to differences in how facts are reported for this OS.  No plan to fix this issue at this time.
-* MacOS uninstall of Privilege Manager for Unix client.  Package does not currently have an uninstaller.  Uninstaller will be added in future release of Privilege Manager.  
+* MacOS uninstall of Privilege Manager for Unix client.  Package does not currently have an uninstaller.  Uninstaller will be added in future release of Privilege Manager.
 

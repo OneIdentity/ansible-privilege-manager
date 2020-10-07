@@ -37,19 +37,19 @@
 
 {# Table #}
 {% macro table() %}
-<table 
-  id="table" 
-  class="table table-hover table-sm table-borderless" 
-  data-search="true" 
+<table
+  id="table"
+  class="table table-hover table-sm table-borderless"
+  data-search="true"
   data-show-search-clear-button="true"
   data-visible-search="false"
-  data-pagination="true" 
+  data-pagination="true"
   data-pagination-v-align="top"
   data-pagination-h-align="left"
   data-pagination-detail-h-align="right"
-  data-detail-view="true" 
-  data-detail-view-icon="true" 
-  data-detail-view-by-click="true" 
+  data-detail-view="true"
+  data-detail-view-icon="true"
+  data-detail-view-by-click="true"
   data-detail-formatter="detailFormatter"
   data-maintain-meta-data="true"
   data-show-fullscreen="false"
@@ -143,7 +143,7 @@
         {# Javascript object #}
         {
           'hostname': '{{ host }}',
-          'group': '{{ hostvars[host]['group_names'] | join(', ') }}', 
+          'group': '{{ hostvars[host]['group_names'] | join(', ') }}',
           'ip address': '{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] | default() }}',
           'os distro': '{{ hostvars[host]['ansible_facts']['distribution'] | default() }}',
           'os version': '{{ hostvars[host]['ansible_facts']['distribution_version'] | default() }}',

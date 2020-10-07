@@ -38,15 +38,18 @@ def dict_list_select(dict_list, keys, default_value='', include_conditions={}, e
 
     # Make sure dict_list is a list
     if not isinstance(dict_list, list):
-        raise AnsibleFilterError("dictlistfilter requires a list, got %s instead." % type(dict_list))
+        raise AnsibleFilterError(
+            "dictlistfilter requires a list, got %s instead." % type(dict_list))
 
     # Make sure include_conditions is a mapping
     if not isinstance(include_conditions, Mapping):
-        raise AnsibleFilterError("dictlistfilter requires include_conditions to be a mapping, got %s instead." % type(include_conditions))
+        raise AnsibleFilterError(
+            "dictlistfilter requires include_conditions to be a mapping, got %s instead." % type(include_conditions))
 
     # Make sure exclude_conditions is a mapping
     if not isinstance(exclude_conditions, Mapping):
-        raise AnsibleFilterError("dictlistfilter requires exclude_conditions to be a mapping, got %s instead." % type(exclude_conditions))
+        raise AnsibleFilterError(
+                "dictlistfilter requires exclude_conditions to be a mapping, got %s instead." % type(exclude_conditions))
 
     # If keys not a list then make it a list
     if not isinstance(keys, list):

@@ -51,7 +51,7 @@ PMINFO_PLUGIN_PATH = BASE_DIR + '/' + PMINFO_PLUGIN_FILE
 # ------------------------------------------------------------------------------
 def pmjoin_find():
     """
-    Find which pmjoin binary is present to determine if this is an agent or plugin environment 
+    Find which pmjoin binary is present to determine if this is an agent or plugin environment
     """
 
     err = None
@@ -65,12 +65,12 @@ def pmjoin_find():
     if not pmjoin_agent_cfe[0]:
         join_path = PMJOIN_AGENT_PATH
         info_path = PMINFO_AGENT_PATH
-        join_version = pmjoin_agent_cfe[1] 
+        join_version = pmjoin_agent_cfe[1]
 
     elif not pmjoin_plugin_cfe[0]:
         join_path = PMJOIN_PLUGIN_PATH
         info_path = PMINFO_PLUGIN_PATH
-        join_version = pmjoin_plugin_cfe[1] 
+        join_version = pmjoin_plugin_cfe[1]
 
     else:
         err = 'pmjoin not found'

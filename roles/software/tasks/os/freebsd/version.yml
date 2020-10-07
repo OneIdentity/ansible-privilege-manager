@@ -1,10 +1,10 @@
 ---
 
 # ------------------------------------------------------------------------------
-# FreeBSD - grab package version 
+# FreeBSD - grab package version
 # ------------------------------------------------------------------------------
 
-# Grab installed version of package 
+# Grab installed version of package
 - name: get {{ package_key }} version
   command:
     cmd: pkg info -x {{ package_name }}

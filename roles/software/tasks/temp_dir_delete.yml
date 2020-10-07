@@ -1,8 +1,8 @@
 ---
 
 # Delete temporary directory on host
-- name: delete temp directory {{ package_dest_dir }} 
-  file: 
+- name: delete temp directory {{ package_dest_dir }}
+  file:
     path: "{{ package_dest_dir }}"
     state: absent
   ignore_errors: true

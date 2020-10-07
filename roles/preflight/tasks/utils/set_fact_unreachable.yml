@@ -10,7 +10,7 @@
       msg: |
         preflight:
         {{ result.msg | default('Unexpected error') }}
-    sas_common: 
+    sas_common:
       unreachable: true
       failed: true
       changed: "{{ result.changed | default(False) }}"

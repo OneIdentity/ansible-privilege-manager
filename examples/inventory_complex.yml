@@ -11,8 +11,8 @@ all:
       # These variables are for 'unix' host group only
       vars:
         ansible_become: true
-        ansible_user: user 
-        ansible_become_password: pass 
+        ansible_user: user
+        ansible_become_password: pass
 
       # Unix hosts only
       hosts:
@@ -26,11 +26,11 @@ all:
     # Here is a group for Mac hosts
     darwin:
 
-      # These variables are for Mac hosts only 
+      # These variables are for Mac hosts only
       vars:
-        ansible_become: false 
+        ansible_become: false
         ansible_user: root
-        ansible_password: pass 
+        ansible_password: pass
 
       # Mac hosts only
       hosts:

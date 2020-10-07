@@ -31,10 +31,11 @@ short_description: Active Directory pre-join checking
 version_added: '2.9'
 
 description: >
-    Performs Privilege Manager software pre-install and pre-join checking by using the Privilege Mananger preflight binary.
+    Performs Privilege Manager software pre-install and pre-join checking by
+    using the Privilege Mananger preflight binary.
 
 options:
-    mode: 
+    mode:
         description:
             - preflight mode
         type: str
@@ -49,7 +50,7 @@ options:
     verbose:
         description:
             - Verbose
-        type: bool 
+        type: bool
         required: false
         default: False
     extra_args:

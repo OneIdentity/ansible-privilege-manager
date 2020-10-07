@@ -12,10 +12,10 @@
 
 # Create temporary directory
 - include_tasks: temp_dir_create.yml
-  when: 
+  when:
     - "'present' in software_pkg_state.values()"
 
-# Perform package tasks  
+# Perform package tasks
 - include_tasks: run_package_task.yml
   vars:
     package_key: "{{ item.key }}"
@@ -24,9 +24,9 @@
   when: "item.key in software_pkgs['packages']"
   loop: "{{ software_pkg_state | oneidentity.privilege_manager.pkgdict2items }}"
 
-# Remove temporary directory 
+# Remove temporary directory
 # - include_tasks: temp_dir_delete.yml
-#   when: 
+#   when:
 #     - "'present' in software_pkg_state.values()"
 
 # Read package versions after changes

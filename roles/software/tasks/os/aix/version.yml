@@ -1,10 +1,10 @@
 ---
 
 # ------------------------------------------------------------------------------
-# AIX - grab package version 
+# AIX - grab package version
 # ------------------------------------------------------------------------------
 
-# Grab installed version of package 
+# Grab installed version of package
 - name: get {{ package_key }} version
   shell:
     cmd: lslpp -cL | grep {{ package_name }}

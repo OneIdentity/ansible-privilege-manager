@@ -1,7 +1,7 @@
 ---
 
 # ------------------------------------------------------------------------------
-# Darwin - install package 
+# Darwin - install package
 # ------------------------------------------------------------------------------
 
 # Copy installer
@@ -12,6 +12,6 @@
   block:
 
     # Run installer
-    - name: install {{ package_key }} 
+    - name: install {{ package_key }}
       command: /usr/sbin/installer -pkg {{ package_dest }} -target /
-      register: pkg_install 
+      register: pkg_install

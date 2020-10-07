@@ -1,12 +1,12 @@
 ---
 
-# Preflight 
+# Preflight
 - name: preflight
   preflight:
-    mode: "{{ preflight_mode }}" 
-    server: "{{ join_server }}" 
-    verbose: "{{ preflight_verbose }}" 
-    extra_args: "{{ preflight_extra_args }}" 
+    mode: "{{ preflight_mode }}"
+    server: "{{ join_server }}"
+    verbose: "{{ preflight_verbose }}"
+    extra_args: "{{ preflight_extra_args }}"
     facts: "{{ preflight_facts_generate or preflight_facts_generate }}"
     facts_verbose: "{{ preflight_facts_verbose }}"
     facts_key: sas_preflight_preflight

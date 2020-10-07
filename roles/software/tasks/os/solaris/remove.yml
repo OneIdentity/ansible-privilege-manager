@@ -8,6 +8,6 @@
 - name: remove {{ package_key }}
   svr4pkg:
     name: "{{ package_name }}"
-    state: absent 
-  register: pkg_remove 
-  changed_when: true 
+    state: absent
+  register: pkg_remove
+  changed_when: true

@@ -1,14 +1,14 @@
 ---
 
 # ------------------------------------------------------------------------------
-# Darwin - grab package version 
+# Darwin - grab package version
 # ------------------------------------------------------------------------------
 
 # Grab installed version of vasclnt(s) and vasgp(s) packages
 - name: get {{ package_key }} version
   command:
     cmd: pkgutil --regexp --pkg-info .*{{ package_name }}.*
-  register: pkg_version 
+  register: pkg_version
   changed_when: false
   failed_when: false
   ignore_errors: true

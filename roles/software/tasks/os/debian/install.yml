@@ -1,7 +1,7 @@
 ---
 
 # ------------------------------------------------------------------------------
-# Debian - install package 
+# Debian - install package
 # ------------------------------------------------------------------------------
 
 # Package install, copy installer
@@ -11,4 +11,4 @@
 - name: install {{ package_key }}
   command:
     cmd: dpkg -i --force-depends {{ package_dest }}
-  register: pkg_install 
+  register: pkg_install

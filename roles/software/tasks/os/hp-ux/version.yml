@@ -1,10 +1,10 @@
 ---
 
 # ------------------------------------------------------------------------------
-# HP-UX - grab package version 
+# HP-UX - grab package version
 # ------------------------------------------------------------------------------
 
-# Grab installed version of package 
+# Grab installed version of package
 - name: get {{ package_key }} version
   shell:
     cmd: swlist | grep {{ package_name }}

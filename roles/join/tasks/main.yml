@@ -1,7 +1,7 @@
 ---
 
 # ------------------------------------------------------------------------------
-# Main 
+# Main
 # ------------------------------------------------------------------------------
 
 - block:
@@ -14,7 +14,7 @@
 
     # We get here on success
     - include_tasks: utils/set_fact_success.yml
-   
+
   ignore_unreachable: true
 
   rescue:

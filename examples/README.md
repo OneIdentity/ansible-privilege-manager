@@ -1,6 +1,6 @@
 # Examples
 
-A small collection of sample files has been included to help get you started.  
+A small collection of sample files has been included to help get you started.
 
 ## Inventory Examples
 

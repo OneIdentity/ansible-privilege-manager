@@ -1,10 +1,10 @@
 ---
 
 # ------------------------------------------------------------------------------
-# Solaris - grab package version 
+# Solaris - grab package version
 # ------------------------------------------------------------------------------
 
-# Grab installed version of package 
+# Grab installed version of package
 - name: get {{ package_key }} version
   command:
     cmd: pkginfo -l {{ package_name }}

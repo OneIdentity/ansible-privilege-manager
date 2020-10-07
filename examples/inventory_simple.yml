@@ -4,10 +4,10 @@ all:
 
   # Any variables you want to set for all hosts can be set here
   vars:
-     
+
     ansible_become: true
-    ansible_user: user 
-    ansible_become_password: pass 
+    ansible_user: user
+    ansible_become_password: pass
 
   # All hosts together in this simple example
   hosts:

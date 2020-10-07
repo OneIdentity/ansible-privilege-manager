@@ -10,7 +10,7 @@
       msg: |
         software:
         {{ result.msg | default('Unexpected error') }}
-    sas_common: 
+    sas_common:
       unreachable: true
       failed: true
       changed: false

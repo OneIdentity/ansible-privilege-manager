@@ -7,6 +7,6 @@
     dest: "{{ item.dest }}"
     backup: "{{ software_reports_backup }}"
   with_items: "{{ software_reports }}"
-  delegate_to: "{{ software_reports_host }}"    
+  delegate_to: "{{ software_reports_host }}"
   run_once: true
   changed_when: false

@@ -1,7 +1,7 @@
 ---
 
 # ------------------------------------------------------------------------------
-# FreeBSD - install package 
+# FreeBSD - install package
 # ------------------------------------------------------------------------------
 
 # Package install, copy installer
@@ -10,8 +10,8 @@
 # Package install
 - name: install {{ package_key }}
   command:
-    cmd: pkg add -f {{ package_dest }}  
-  register: pkg_install 
+    cmd: pkg add -f {{ package_dest }}
+  register: pkg_install
   ignore_errors: true
   changed_when: true
   failed_when: pkg_install.stdout | lower is search("failed")

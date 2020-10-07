@@ -1,7 +1,7 @@
 ---
 
 # Gather facts
-- name: gather host information 
+- name: gather host information
   setup:
   register: result
   ignore_unreachable: true

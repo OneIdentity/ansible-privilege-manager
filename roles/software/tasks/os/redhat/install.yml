@@ -1,7 +1,7 @@
 ---
 
 # ------------------------------------------------------------------------------
-# Redhat - install package 
+# Redhat - install package
 # ------------------------------------------------------------------------------
 
 # Package install, copy installer
@@ -10,5 +10,5 @@
 # Package install
 - name: install {{ package_key }}
   command:
-    cmd: rpm -ivh --nodeps {{ package_dest }} 
-  register: pkg_install 
+    cmd: rpm -ivh --nodeps {{ package_dest }}
+  register: pkg_install

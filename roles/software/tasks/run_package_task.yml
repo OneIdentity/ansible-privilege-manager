@@ -3,36 +3,36 @@
 # Capture requested state
 - include_tasks: utils/set_state.yml
   vars:
-    flag: req 
-    value: "{{ state }}" 
+    flag: req
+    value: "{{ state }}"
   when: software_reports_generate or software_facts_generate
 
 # Check if OS not supported
-# NOTE: This causes the host to fail so it won't show up the report  
+# NOTE: This causes the host to fail so it won't show up the report
 - name: OS {{ ansible_facts['os_family'] }} is not supported
   block:
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
+        flag: act
         value: failed
       when: software_reports_generate or software_facts_generate
 
     - fail:
         msg: OS {{ ansible_facts['os_family'] }} is not supported
 
-  when: 
+  when:
     - ansible_facts['os_family'] | lower not in software_os_families
 
-# Handle remove 
-- name: remove {{ package_key }} 
+# Handle remove
+- name: remove {{ package_key }}
   block:
 
     - include_tasks: os/{{ ansible_facts['os_family'] | lower }}/remove.yml
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
+        flag: act
         value: removed
       when: software_reports_generate or software_facts_generate
 
@@ -40,7 +40,7 @@
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
+        flag: act
         value: failed
       when: software_reports_generate or software_facts_generate
 
@@ -52,29 +52,29 @@
     - hostvars[inventory_hostname]['sas_software_' + package_key + '_vers_beg']
 
 # Handle install
-- name: install {{ package_key }} 
+- name: install {{ package_key }}
   block:
 
     - include_tasks: os/{{ ansible_facts['os_family'] | lower }}/install.yml
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
-        value: installed 
+        flag: act
+        value: installed
       when: software_reports_generate or software_facts_generate
 
   rescue:
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
+        flag: act
         value: failed
       when: software_reports_generate or software_facts_generate
-        
+
     - fail:
         msg: failed to install {{ package_key }} package
 
-  when: 
+  when:
     - package_key in software_pkgs['packages']
     - state == 'present'
     - not hostvars[inventory_hostname]['sas_software_' + package_key + '_vers_beg']
@@ -87,7 +87,7 @@
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
+        flag: act
         value: upgraded
       when: software_reports_generate or software_facts_generate
 
@@ -95,17 +95,17 @@
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
+        flag: act
         value: failed
       when: software_reports_generate or software_facts_generate
 
     - fail:
         msg: failed to upgrade {{ package_key }} package
 
-  when: 
+  when:
     - package_key in software_pkgs['packages']
     - state == 'present'
-    - hostvars[inventory_hostname]['sas_software_' + package_key + '_vers_beg'] 
+    - hostvars[inventory_hostname]['sas_software_' + package_key + '_vers_beg']
     - hostvars[inventory_hostname]['sas_software_' + package_key + '_vers_beg'] < software_pkgs['packages'][package_key]['vers']
 
 # Handle downgrade
@@ -116,7 +116,7 @@
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
+        flag: act
         value: downgraded
       when: software_reports_generate or software_facts_generate
 
@@ -124,24 +124,24 @@
 
     - include_tasks: utils/set_state.yml
       vars:
-        flag: act 
+        flag: act
         value: failed
       when: software_reports_generate or software_facts_generate
 
     - fail:
         msg: failed to downgrade {{ package_key }} package
 
-  when: 
+  when:
     - package_key in software_pkgs['packages']
     - state == 'present'
-    - hostvars[inventory_hostname]['sas_software_' + package_key + '_vers_beg'] 
+    - hostvars[inventory_hostname]['sas_software_' + package_key + '_vers_beg']
     - hostvars[inventory_hostname]['sas_software_' + package_key + '_vers_beg'] > software_pkgs['packages'][package_key]['vers']
 
-# Handle no action 
+# Handle no action
 - include_tasks: utils/set_state.yml
   vars:
-    flag: act 
-    value: none 
+    flag: act
+    value: none
   when:
     - software_reports_generate or software_facts_generate
-    - not (hostvars[inventory_hostname]['sas_software_' + package_key + '_act'] | default('')) 
+    - not (hostvars[inventory_hostname]['sas_software_' + package_key + '_act'] | default(''))

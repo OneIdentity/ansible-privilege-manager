@@ -10,5 +10,5 @@
 # Package install
 - name: install {{ package_key }}
   command:
-    cmd: rpm -Uvh --nodeps {{ package_dest }} 
-  register: pkg_install 
+    cmd: rpm -Uvh --nodeps {{ package_dest }}
+  register: pkg_install
