@@ -27,7 +27,7 @@ authors:
 description: >
   The One Identity Privilege Manager collection includes roles, modules,
   plugins, report templates, and sample playbooks to automate software deployment,
-  configuration, policy server joining, monitoring, and report generation
+  configuration, policy server joining, and report generation
   for Privilege Manager.
 
 # A valid SPDX license identifier https://spdx.org/licenses/
@@ -37,16 +37,13 @@ license: Apache-2.0
 tags:
 - oneidentity
 - quest
-- safeguard
 - privilege
 - manager
-- activedirectory
-- ad
+- sudo
 - iam
 - identity
 - access
 - management
-- sso
 - unix
 - linux
 - macos
