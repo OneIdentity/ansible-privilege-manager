@@ -17,4 +17,4 @@
 - fail:
     msg: "{{ software_pkgs.msg }}"
   register: result
-  when: software_pkgs.msg
+  when: software_pkgs.msg is defined and software_pkgs.msg

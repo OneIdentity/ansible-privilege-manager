@@ -133,6 +133,7 @@ ansible_facts:
 from ansible.module_utils.basic import AnsibleModule
 import sys
 import subprocess
+import traceback
 import re
 import ansible_collections.oneidentity.privilege_manager.plugins.module_utils.pmjoin as pmj
 
@@ -246,17 +247,23 @@ def run_normal(params, result):
     facts_verbose = params['facts_verbose']
     facts_key = params['facts_key'] if params['facts_key'] else FACTS_KEY_DEFAULT
 
-    # Check pmjoin
-    err, pmjoin_path, pminfo_path, pmjoin_version = pmj.pmjoin_find()
+    try:
 
-    # Run pmjoin
-    if err is None:
-        err, changed, output = run_pmjoin(
-            pmjoin_path,
-            state,
-            server,
-            password,
-            extra_args)
+        # Check pmjoin
+        err, pmjoin_path, pminfo_path, pmjoin_version = pmj.pmjoin_find()
+
+        # Run pmjoin
+        if err is None:
+            err, changed, output = run_pmjoin(
+                pmjoin_path,
+                state,
+                server,
+                password,
+                extra_args)
+
+    except Exception:
+        tb = traceback.format_exc()
+        err = str(tb)
 
     # Build result
     result['changed'] = changed
@@ -351,18 +358,20 @@ def run_pmjoin_join(
     cmd += [path]
     cmd += ['-b']
     cmd += ['-a']
-    # cmd += ['-q']
+    cmd += ['-q']
     cmd += [server]
     cmd += [extra_args] if extra_args else []
 
     # Call vastool
     try:
-        rval_bytes = subprocess.check_output(' '.join(cmd), stderr=subprocess.STDOUT, shell=True)
+        p = subprocess.Popen(' '.join(cmd), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        rval_bytes, rval_err = p.communicate(password)
+        rval_bytes += rval_err
     # This exception happens when the process exits with a non-zero return code
     except subprocess.CalledProcessError as e:
         # Just grab output bytes likes a normal exit, we'll parse it for errors anyway
         rval_bytes = e.output
-    # check_output returns list of bytes so we have to decode to get a string
+    # Popen returns list of bytes so we have to decode to get a string
     rval_str = rval_bytes.decode(sys.stdout.encoding)
 
     # Parse pmjoin return
@@ -392,12 +401,14 @@ def run_pmjoin_unjoin(
 
     # Call vastool
     try:
-        rval_bytes = subprocess.check_output(' '.join(cmd), stderr=subprocess.STDOUT, shell=True)
+        p = subprocess.Popen(' '.join(cmd), stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        rval_bytes, rval_err = p.communicate()
+        rval_bytes += rval_err
     # This exception happens when the process exits with a non-zero return code
     except subprocess.CalledProcessError as e:
         # Just grab output bytes likes a normal exit, we'll parse it for errors anyway
         rval_bytes = e.output
-    # check_output returns list of bytes so we have to decode to get a string
+    # Popen returns list of bytes so we have to decode to get a string
     rval_str = rval_bytes.decode(sys.stdout.encoding)
 
     # Parse pmjoin return

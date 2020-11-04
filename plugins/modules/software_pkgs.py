@@ -126,6 +126,7 @@ ansible_facts:
 
 from ansible.module_utils.basic import AnsibleModule
 import os
+import traceback
 import glob
 import re
 
@@ -300,23 +301,29 @@ def run_normal(params, result):
     facts = params['facts']
     facts_key = params['facts_key'] if params['facts_key'] else FACTS_KEY_DEFAULT
 
-    # Check directory
-    err = check_dir(path)
+    try:
 
-    # Check mode
-    err, sub_dirs = check_mode(mode)
+        # Check directory
+        err = check_dir(path)
 
-    # Find packages
-    if err is None:
-        for sub_dir in sub_dirs:
-            err, p = find_packages(path, sub_dir, sys, dist, arch)
-            if err is None:
-                packages.update(p)
-            else:
-                break
+        # Check mode
+        err, sub_dirs = check_mode(mode)
 
-        if not err and not packages:
-            err = 'No packages found for sys=' + sys + ', dist=' + dist + ', arch=' + arch
+        # Find packages
+        if err is None:
+            for sub_dir in sub_dirs:
+                err, p = find_packages(path, sub_dir, sys, dist, arch)
+                if err is None:
+                    packages.update(p)
+                else:
+                    break
+
+            if not err and not packages:
+                err = 'No packages found for sys=' + sys + ', dist=' + dist + ', arch=' + arch
+
+    except Exception:
+        tb = traceback.format_exc()
+        err = str(tb)
 
     # Build result
     result['changed'] = False   # Never makes any changes to the host

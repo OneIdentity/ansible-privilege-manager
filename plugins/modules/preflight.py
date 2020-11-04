@@ -136,6 +136,7 @@ ansible_facts:
 
 from ansible.module_utils.basic import AnsibleModule
 import sys
+import traceback
 import subprocess
 import ansible_collections.oneidentity.privilege_manager.plugins.module_utils.check_file_exec as cfe
 
@@ -258,17 +259,23 @@ def run_normal(params, result):
     facts_key = params['facts_key'] if params['facts_key'] else FACTS_KEY_DEFAULT
     path = params['path'] if params['path'] else PATH_DEFAULT
 
-    # Check preflight
-    err, version = cfe.check_file_exec(path, '-v')
+    try:
 
-    # Run preflight
-    if err is None:
-        err, steps = run_preflight(
-            mode,
-            server,
-            verbose,
-            extra_args,
-            path)
+        # Check preflight
+        err, version = cfe.check_file_exec(path, '-v')
+
+        # Run preflight
+        if err is None:
+            err, steps = run_preflight(
+                mode,
+                server,
+                verbose,
+                extra_args,
+                path)
+
+    except Exception:
+        tb = traceback.format_exc()
+        err = str(tb)
 
     # Build result
     result['changed'] = False   # preflight never makes any changes to the host
@@ -314,12 +321,14 @@ def run_preflight(
 
     # Call preflight
     try:
-        rval_bytes = subprocess.check_output(' '.join(cmd), stderr=subprocess.STDOUT, shell=True)
+        p = subprocess.Popen(' '.join(cmd), stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        rval_bytes, rval_err = p.communicate()
+        rval_bytes += rval_err
     # This exception happens when the process exits with a non-zero return code
     except subprocess.CalledProcessError as e:
         # Just grab output bytes likes a normal exit, we'll parse it for errors anyway
         rval_bytes = e.output
-    # check_output returns list of bytes so we have to decode to get a string
+    # Popen returns list of bytes so we have to decode to get a string
     rval_str = rval_bytes.decode(sys.stdout.encoding)
 
     # Parse preflight return

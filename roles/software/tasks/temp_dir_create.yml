@@ -11,4 +11,4 @@
 
 - fail:
     msg: "{{ result.msg }}"
-  when: result.failed
+  when: result.failed is defined and result.failed
