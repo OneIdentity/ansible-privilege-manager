@@ -1,0 +1,6 @@
+---
+
+# Set step
+- set_fact: |
+    sas_sudoers_{{ key }}={{ value }}
+    | cacheable=true

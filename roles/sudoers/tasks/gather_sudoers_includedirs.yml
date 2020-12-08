@@ -1,0 +1,28 @@
+---
+
+# Grep sudoers for includedir statements
+- name: Grab sudoers include statements
+  command: "grep '^#includedir ' /etc/sudoers"
+  register: includedirs
+  ignore_errors: true
+  #fail_when: false
+
+- debug:
+    var: includedirs
+
+- debug:
+    msg: "{{ item }}"
+  loop: "{{ includedirs.stdout_lines }}"
+
+# Grab sudoers
+# - fetch:
+#     src: '/etc/sudoers'
+#     #dest: "{{ sudoers_tmp_dir }}/{{ inventory_hostname }}_sudoers"
+#     #flat: true
+#     dest: "{{ sudoers_tmp_dir }}"
+#   register: result
+
+# Fail if there was a message returned
+# - fail:
+#     msg: "{{ result.msg }}"
+#   when: result.msg is defined and result.msg

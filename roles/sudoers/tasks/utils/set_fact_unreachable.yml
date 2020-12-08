@@ -1,0 +1,24 @@
+---
+
+# Set unreachable
+- set_fact:
+    cacheable: true
+    sas_sudoers:
+      unreachable: true
+      failed: true
+      changed: "{{ result.changed | default(False) }}"
+      msg: |
+        sudoers:
+        {{ result.msg | default('Unexpected error') }}
+    sas_common:
+      unreachable: true
+      failed: true
+      changed: "{{ result.changed | default(False) }}"
+      msg: |
+        sudoers:
+        {{ result.msg | default('Unexpected error') }}
+  when: sudoers_reports_generate or sudoers_facts_generate
+
+# Propogate fail
+- fail:
+    msg: "{{ result.msg | default('Unexpected error') }}"
