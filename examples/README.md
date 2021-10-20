@@ -17,3 +17,7 @@ The [`software`](run_software.yml) role example shows use of the `software` role
 ## `join` Role Example
 
 The [`join`](run_join.yml) role example shows use of the `join` role in an Ansbile playbook.  The variables most likely to be overriden have been included in this playbook for your convenience even though many are still set to their default values.
+
+## `sudo_policy_for_unix_host` Role Example
+
+The [`sudo_policy_for_unix_host`](run_sudo_policy_for_unix_host.yml) role example shows use of the `sudo_policy_for_unix_host` role in an Ansbile playbook.  The variables most likely to be overriden have been included in this playbook for your convenience even though many are still set to their default values.

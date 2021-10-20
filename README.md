@@ -18,6 +18,10 @@ The One Identity Privilege Manager Ansible Collection, referred to as `ansible-p
 * [`join role`](roles/join/README.md): Client Policy Server joining/unjoining.
     * [`pmjoin module`](roles/join/README.md#plugins) Performs Policy Server join/unjoin tasks on host.
 
+* [`sudo_policy_for_unix_host role`](roles/sudo_policy_for_unix_host/README.md): List the version of Privilege Manager for sudo plugins and the sudo policies in use on all client hosts that are joined to the policy group.
+    * [`get_sudo_policy_for_unix_host module`](roles/sudo_policy_for_unix_host/README.md#plugins): Runs pmsrvinfo binary and returns its results.
+    * [`latestsudopolicies filter`](roles/sudo_policy_for_unix_host/README.md#plugins) Selects the latest plugins for each host.
+
 ## Installation
 
 ### Prerequisites

@@ -1,0 +1,24 @@
+---
+
+- name: Get Sudo Policy for Unix Host
+  get_sudo_policy_for_unix_host:
+    facts: "{{ sudo_policy_for_unix_host_facts_generate or sudo_policy_for_unix_host_reports_generate }}"
+    facts_key: sas_sudo_policy_for_unix_host
+  register: result
+  failed_when: false
+
+# Fail if there was a message returned
+- fail:
+    msg: "{{ result.msg }}"
+  when: result.msg
+
+- set_fact:
+    sudo_policies: |
+      {%- set policy_list = [] %}
+      {%- for host in play_hosts %}
+        {%- if policy_list.extend(hostvars[host].ansible_facts.sas_sudo_policy_for_unix_host.sudo_policy_for_unix_host | default([])) %}
+        {%- endif %}
+      {%- endfor %}
+      {{ policy_list | oneidentity.privilege_manager.latestsudopolicies() }}
+  run_once: true
+
