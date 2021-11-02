@@ -3,15 +3,13 @@
 # Grab passwd
 - fetch:
     src: '/etc/passwd'
-    #dest: "{{ sudoers_tmp_dir }}/{{ inventory_hostname }}_passwd"
-    #flat: true
     dest: "{{ sudoers_tmp_dir }}"
   register: result
 
 - include_tasks: utils/set_step.yml
   vars:
     key: 'passwd'
-    value: result 
+    value: "{{ result }}"
 
 # Fail if there was a message returned
 - fail:

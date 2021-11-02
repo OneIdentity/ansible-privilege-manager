@@ -118,6 +118,10 @@
         {% else %}
         {% set details_raw = hostvars[host]['ansible_facts']['sas_common'] | default() %}
         {% endif %}
+        {% set passwd = hostvars[host]['ansible_facts']['sas_sudoers_passwd'] | default() %}
+        {% set group = hostvars[host]['ansible_facts']['sas_sudoers_group'] | default() %}
+        {% set sudoers_files = hostvars[host]['ansible_facts']['get_sudoers']['sudoers_files'] | default() %}
+        {% set save_sudoers = hostvars[host]['ansible_facts']['save_sudoers'] | default() %}
         {# Details #}
         {% set details = {
             'hostname': host,
@@ -125,9 +129,26 @@
             'unreachable': unreachable,
             'failed': failed,
             'changed': changed,
-            'params': details_raw['params'] | default({}),
-            'version': details_raw['version'] | default(''),
-            'steps': details_raw['steps'] | default([])
+            'passwd': {
+                'dest': passwd.dest | default(),
+                'failed': passwd.failed | default(),
+                'file': passwd.file | default(),
+                'mode': sudoers_passwd_mode
+            },
+            'group': {
+                'dest': group.dest | default(),
+                'failed': group.failed | default(),
+                'file': group.file | default(),
+                'mode': sudoers_group_mode
+            },
+            'sudoers': {
+                'mode': sudoers_sudoers_mode,
+                'sudoers files': sudoers_files,
+                'complete sudoers file': {
+                    'dest': save_sudoers.dest | default(),
+                    'failed': save_sudoers.failed | default()
+                }
+            }
             }
         %}
         {# Format details #}

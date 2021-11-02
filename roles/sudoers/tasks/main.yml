@@ -19,15 +19,7 @@
 
     # Gather sudoers
     - include_tasks: gather_sudoers.yml
-      when: sudoers_sudoers_mode == 'file'
-
-    # Gather sudoers includes
-    - include_tasks: gather_sudoers_includes.yml
-      when: sudoers_sudoers_includes_mode == 'file'
-      
-    # Gather sudoers includedirs
-    - include_tasks: gather_sudoers_includedirs.yml
-      when: sudoers_sudoers_mode == 'file'
+      when: sudoers_sudoers_mode == 'file' or sudoers_sudoers_mode == 'inline'
 
     # We get here on success
     - include_tasks: utils/set_fact_success.yml

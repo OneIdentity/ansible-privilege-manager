@@ -3,10 +3,13 @@
 # Grab group
 - fetch:
     src: '/etc/group'
-    #dest: "{{ sudoers_tmp_dir }}/{{ inventory_hostname }}_group"
-    #flat: true
     dest: "{{ sudoers_tmp_dir }}"
   register: result
+
+- include_tasks: utils/set_step.yml
+  vars:
+    key: 'group'
+    value: "{{ result }}"
 
 # Fail if there was a message returned
 - fail:

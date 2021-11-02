@@ -5,21 +5,12 @@
 
 sudoers_tmp_dir: /tmp/1id_sudoers
 
-# File gatherering modes: skip, file
+# File gathering modes: skip, file
 sudoers_passwd_mode: skip
 sudoers_group_mode: skip
+
+# File gathering modes: skip, file, inline
 sudoers_sudoers_mode: skip
-
-# sudoers include gathering modes: skip, inline, file
-sudoers_sudoers_includes_mode: skip
-sudoers_sudoers_includedirs_mode: skip
-
-
-# Facts settings
-# ------------------------------------------------------------------------------
-
-sudoers_facts_generate: "{{ facts_generate }}"
-sudoers_facts_verbose: "{{ facts_verbose }}"
 
 
 # Reports settings

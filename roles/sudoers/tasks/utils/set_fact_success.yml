@@ -13,4 +13,4 @@
       failed: false
       changed: "{{ result.changed | default(False) }}"
       msg: ''
-  when: sudoers_reports_generate or sudoers_facts_generate
+  when: sudoers_reports_generate

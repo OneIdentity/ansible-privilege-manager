@@ -17,7 +17,7 @@
       msg: |
         sudoers:
         {{ result.msg | default('Unexpected error') }}
-  when: sudoers_reports_generate or sudoers_facts_generate
+  when: sudoers_reports_generate
 
 # Propogate fail
 - fail:
