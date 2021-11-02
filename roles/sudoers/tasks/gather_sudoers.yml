@@ -1,14 +1,40 @@
 ---
 
-# Grab sudoers
-- fetch:
-    src: '/etc/sudoers'
-    #dest: "{{ sudoers_tmp_dir }}/{{ inventory_hostname }}_sudoers"
-    #flat: true
-    dest: "{{ sudoers_tmp_dir }}"
+- name: Get sudoers
+  get_sudoers:
+    facts_key: get_sudoers
   register: result
 
 # Fail if there was a message returned
 - fail:
     msg: "{{ result.msg }}"
   when: result.msg is defined and result.msg
+
+- name: Grab sudoers
+  fetch:
+    src: "{{ item }}"
+    dest: "{{ sudoers_tmp_dir }}"
+  with_items: "{{ result.ansible_facts.get_sudoers.sudoers_files }}"
+  when: sudoers_sudoers_mode == 'file'
+
+- name: Save complete sudoers
+  save_sudoers:
+    facts_key: save_sudoers
+    path: "{{ sudoers_tmp_dir + '/' + inventory_hostname + '/' + result.ansible_facts.get_sudoers.main_sudoers_path }}"
+    content: "{{ result.ansible_facts.get_sudoers.complete_sudoers }}"
+  when: sudoers_sudoers_mode == 'inline'
+  delegate_to: localhost
+  register: result
+
+# Fail if there was a message returned
+- fail:
+    msg: "{{ result.msg }}"
+  when: result.msg is defined and result.msg
+
+- name: Change ownership of complete sudoers and its parent folders
+  command:
+    cmd: chown {{ sudoers_tmp_dir + '/' + inventory_hostname }} --reference={{ sudoers_tmp_dir + '/' + inventory_hostname }} -R
+    warn: false
+  when: sudoers_sudoers_mode == 'inline'
+  delegate_to: localhost
+

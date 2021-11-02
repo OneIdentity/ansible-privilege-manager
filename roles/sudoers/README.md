@@ -34,54 +34,15 @@ All of the variables shown below have a default value but can be overridden to s
     sudoers_group_mode: skip
     ```
 
-* `sudoers_sudoers_mode` configures how the `sudoers` file is gathered.  Possible values:
+* `sudoers_sudoers_mode` configures how the `sudoers` file and all files included from within `sudoers` are gathered.  Possible values:
 
-    * `skip` does not gather this file.
-    * `file` gathers this file into `sudoers_tmp_dir`.
+    * `skip` does not gather these files.
+    * `file` gathers these files into `sudoers_tmp_dir`.
+    * `inline` gathers these files and merges them into a single sudoers file by replacing all include directives with the content of include files.  This complete sudoers file is placed into `sudoers_tmp_dir`.
 
     Default value is:
     ```yaml
     sudoers_sudoers_mode: skip
-    ```
-
-* `sudoers_sudoers_includes_mode` configures how included files in the `sudoers` file are gathered.  Possible values:
-
-    * `skip` does not gather this file.
-    * `inline` gathers this file and inserts it into the main `sudoers` file.
-    * `file` gathers this file into `sudoers_tmp_dir`.
-
-    Default value is:
-    ```yaml
-    sudoers_sudoers_includes_mode: skip
-    ```
-
-* `sudoers_sudoers_includedirs_mode` configures how included directories in the `sudoers` file are gathered.  Possible values:
-
-    * `skip` does not gather this directory.
-    * `inline` gathers this direcory and inserts it into the main `sudoers` file.
-    * `file` gathers this directory into `sudoers_tmp_dir`.
-
-    Default value is:
-    ```yaml
-    sudoers_sudoers_includedirs_mode: skip
-    ```
-
-### Facts generation
-
-Facts generation variable defaults for all roles are set by variables in the [`common`](../common/README.md) role and can be overriden for all roles by setting the appropriate [`common`](../common/README.md) role variable.  See [common role facts generation variables](../common/README.md#facts-generation) in the [`common`](../common/README.md) role.
-
-* `sudoers_facts_generate` enables facts generation.  Implicitely enabled if `sudoers_reports_generate` is set.
-
-    Default value is:
-    ```yaml
-    sudoers_facts_generate: "{{ facts_generate }}"
-    ```
-
-* `sudoers_facts_verbose` enables verbose facts generation.
-
-    Default value is:
-    ```yaml
-    sudoers_facts_verbose: "{{ facts_verbose }}"
     ```
 
 ### Report generation
@@ -139,7 +100,12 @@ Report generation variable defaults for all roles are set by variables in the [`
 
 ## Plugins
 
-None.
+The `sudoers` role contains two plugins to support operation of the role:
+
+* `get_sudoers module` module returns the list of sudoers files (the main sudoers and all other included sudoers files) and a single complete sudoers file in which all include directives have been replaced by the content of the included files.
+
+* `save_sudoers module` module saves the complete sudoers file on the controller node.
+
 # Usage
 
 Below is a sample playbook using the `sudoers` role.
@@ -158,12 +124,6 @@ Below is a sample playbook using the `sudoers` role.
     sudoers_passwd_mode: file
     sudoers_group_mode: file
     sudoers_sudoers_mode: file
-    sudoers_sudoers_includes_mode: file
-    sudoers_sudoers_includedirs_mode: file
-
-    # Facts
-    sudoers_facts_generate: true
-    sudoers_facts_verbose: false
 
     # Reports
     sudoers_reports_generate: true

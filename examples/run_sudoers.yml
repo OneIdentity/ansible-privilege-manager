@@ -1,0 +1,21 @@
+---
+
+- hosts: all
+  gather_facts: false
+
+  # The variables you would most likely want/need to override have been included
+  vars:
+
+    # Sudoers
+    sudoers_tmp_dir: /tmp/1id_sudoers
+    sudoers_passwd_mode: file
+    sudoers_group_mode: file
+    sudoers_sudoers_mode: file
+
+    # Reports
+    sudoers_reports_generate: true
+    sudoers_reports_backup: false
+
+  roles:
+    - name: oneidentity.privilege_manager.sudoers
+
