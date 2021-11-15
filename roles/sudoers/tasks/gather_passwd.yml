@@ -1,0 +1,17 @@
+---
+
+# Grab passwd
+- fetch:
+    src: '/etc/passwd'
+    dest: "{{ sudoers_tmp_dir }}"
+  register: result
+
+- include_tasks: utils/set_step.yml
+  vars:
+    key: 'passwd'
+    value: "{{ result }}"
+
+# Fail if there was a message returned
+- fail:
+    msg: "{{ result.msg }}"
+  when: result.msg is defined and result.msg

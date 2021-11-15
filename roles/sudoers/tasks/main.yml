@@ -1,0 +1,42 @@
+---
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+- block:
+
+    # Gather facts
+    - include_tasks: gather_facts.yml
+
+    # Gather passwd
+    - include_tasks: gather_passwd.yml
+      when: sudoers_passwd_mode == 'file'
+
+    # Gather group
+    - include_tasks: gather_group.yml
+      when: sudoers_group_mode == 'file'
+
+    # Gather sudoers
+    - include_tasks: gather_sudoers.yml
+      when: sudoers_sudoers_mode == 'file' or sudoers_sudoers_mode == 'inline'
+
+    # We get here on success
+    - include_tasks: utils/set_fact_success.yml
+
+  ignore_unreachable: true
+
+  rescue:
+
+    # Set unreachable status and fail
+    - include_tasks: utils/set_fact_unreachable.yml
+      when: result.unreachable is defined and result.unreachable == true
+
+    # Set fail status and fail
+    - include_tasks: utils/set_fact_failed.yml
+
+  always:
+
+    # Generate reports
+    - include_tasks: generate_reports.yml
+      when: sudoers_reports_generate

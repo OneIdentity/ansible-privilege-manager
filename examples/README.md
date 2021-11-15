@@ -17,3 +17,7 @@ The [`software`](run_software.yml) role example shows use of the `software` role
 ## `join` Role Example
 
 The [`join`](run_join.yml) role example shows use of the `join` role in an Ansbile playbook.  The variables most likely to be overriden have been included in this playbook for your convenience even though many are still set to their default values.
+
+## `sudoers` Role Example
+
+The [`sudoers`](run_sudoers.yml) role example shows use of the `sudoers` role in an Ansbile playbook.  The variables most likely to be overriden have been included in this playbook for your convenience even though many are still set to their default values.

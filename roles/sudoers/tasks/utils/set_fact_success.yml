@@ -1,0 +1,16 @@
+---
+
+# Set success
+- set_fact:
+    cacheable: true
+    sas_sudoers:
+      unreachable: false
+      failed: false
+      changed: "{{ result.changed | default(False) }}"
+      msg: ''
+    sas_common:
+      unreachable: false
+      failed: false
+      changed: "{{ result.changed | default(False) }}"
+      msg: ''
+  when: sudoers_reports_generate

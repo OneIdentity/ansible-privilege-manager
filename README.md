@@ -18,6 +18,10 @@ The One Identity Privilege Manager Ansible Collection, referred to as `ansible-p
 * [`join role`](roles/join/README.md): Client Policy Server joining/unjoining.
     * [`pmjoin module`](roles/join/README.md#plugins) Performs Policy Server join/unjoin tasks on host.
 
+* [`sudoers role`](roles/sudoers/README.md): Gathers sudoers file information including included sudoers files and directories.  User and group information can be gathered as well.
+    * [`get_sudoers module`](roles/sudoers/README.md#plugins) Returns the list of sudoers files (the main sudoers and all other included sudoers files) and a single complete sudoers file in which all include directives have been replaced by the content of the included files.
+    * [`save_sudoers module`](roles/sudoers/README.md#plugins) Saves the complete sudoers file on the controller node.
+
 ## Installation
 
 ### Prerequisites
