@@ -1,6 +1,6 @@
 # `sudoers` Role
 
-The `sudoers` role gathers sudoers file information including included sudoers files and directories.  User and groups infomration can be gathered as well.  The purpose is to view sudoers settings, users, and groups across hosts in preparation for creating a common sudoers file served from a [Privilege Manager](https://www.oneidentity.com/products/privilege-manager-for-sudo/) Policy Server.  Report generation can be enabled to provide CSV and HTML reports of the results.
+The `sudoers` role gathers sudoers file information including included sudoers files and directories.  User and group information can be gathered as well.  The purpose is to view sudoers settings, users, and groups across hosts in preparation for creating a common sudoers file served from a [Privilege Manager](https://www.oneidentity.com/products/privilege-manager-for-sudo/) Policy Server.  Report generation can be enabled to provide CSV and HTML reports of the results.
 
 ## Requirements
 
