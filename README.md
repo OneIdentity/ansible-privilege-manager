@@ -22,6 +22,10 @@ The One Identity Privilege Manager Ansible Collection, referred to as `ansible-p
     * [`get_sudoers module`](roles/sudoers/README.md#plugins) Returns the list of sudoers files (the main sudoers and all other included sudoers files) and a single complete sudoers file in which all include directives have been replaced by the content of the included files.
     * [`save_sudoers module`](roles/sudoers/README.md#plugins) Saves the complete sudoers file on the controller node.
 
+* [`sudo_policy_for_unix_host role`](roles/sudo_policy_for_unix_host/README.md): List the version of Privilege Manager for sudo plugins and the sudo policies in use on all client hosts that are joined to the policy group.
+    * [`get_sudo_policy_for_unix_host module`](roles/sudo_policy_for_unix_host/README.md#plugins): Runs pmsrvinfo binary and returns its results.
+    * [`latestsudopolicies filter`](roles/sudo_policy_for_unix_host/README.md#plugins) Selects the latest plugins for each host.
+
 ## Installation
 
 ### Prerequisites

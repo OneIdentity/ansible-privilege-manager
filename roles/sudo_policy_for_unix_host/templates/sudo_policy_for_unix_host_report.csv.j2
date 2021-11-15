@@ -1,0 +1,9 @@
+Sudo Policy for Unix Host,"{{ now(fmt='%Y-%m-%d %H:%M:%S') }}",
+Hostname,Policy Plugin,Version
+{% for policy in sudo_policies | sort %}
+{{ '"%s","%s","%s",' | format(
+policy[0],
+policy[1],
+policy[2]
+)}}
+{% endfor %}

@@ -1,0 +1,11 @@
+---
+
+- name: generate reports
+  template:
+    src:  "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    backup: "{{ sudo_policy_for_unix_host_reports_backup }}"
+  with_items: "{{ sudo_policy_for_unix_host_reports }}"
+  delegate_to: "{{ sudo_policy_for_unix_host_reports_host }}"
+  run_once: true
+  changed_when: false

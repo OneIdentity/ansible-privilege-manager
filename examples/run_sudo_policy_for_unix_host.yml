@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  gather_facts: false
+
+  # The variables you would most likely want/need to override have been included
+  vars:
+
+    # Facts
+    sudo_policy_for_unix_host_facts_generate: true
+
+    # Reports
+    sudo_policy_for_unix_host_reports_generate: true
+    sudo_policy_for_unix_host_reports_backup: false
+
+  roles:
+    - name: oneidentity.privilege_manager.sudo_policy_for_unix_host
