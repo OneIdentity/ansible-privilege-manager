@@ -34,6 +34,8 @@ The One Identity Privilege Manager Ansible Collection, referred to as `ansible-p
 
     * `Collections are a new feature introduced in Ansible version 2.9.  Please use the latest 2.9+ release for the best user experience.`
 
+* [Jinja](https://github.com/pallets/jinja) version 2.10 or later.
+
 * [Privilege Manager](https://www.oneidentity.com/products/privilege-manager-for-sudo/) version 6.1.x or later
 
     * `This collection expects the components and structure of Privilege Manager 6.1.x or later.`
