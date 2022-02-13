@@ -365,7 +365,7 @@ def run_pmjoin_join(
     # Call vastool
     try:
         p = subprocess.Popen(' '.join(cmd), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        rval_bytes, rval_err = p.communicate(password)
+        rval_bytes, rval_err = p.communicate(password.encode(sys.stdout.encoding))
         rval_bytes += rval_err
     # This exception happens when the process exits with a non-zero return code
     except subprocess.CalledProcessError as e:

@@ -10,7 +10,7 @@ namespace: oneidentity
 name: privilege_manager
 
 # Semantic versioning compliant version designation
-version: "0.1.0"
+version: "0.1.2"
 
 # The path do the Markdown(.md) readme file
 readme: README.md
