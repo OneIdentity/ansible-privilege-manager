@@ -139,6 +139,7 @@ import sys
 import traceback
 import subprocess
 import ansible_collections.oneidentity.privilege_manager.plugins.module_utils.check_file_exec as cfe
+from ansible_collections.oneidentity.authentication_services.plugins.module_utils.misc_utils import enclose_shell_arg
 
 
 # ------------------------------------------------------------------------------
@@ -314,7 +315,7 @@ def run_preflight(
     cmd = []
     cmd += [path]
     cmd += ['--' + mode]
-    cmd += ['--policyserver ' + server] if server and mode in MODE_CHOICES[1:] else []
+    cmd += ['--policyserver ' + enclose_shell_arg(server)] if server and mode in MODE_CHOICES[1:] else []
     cmd += ['--verbose'] if verbose else []
     cmd += ['--csv']
     cmd += [extra_args] if extra_args else []

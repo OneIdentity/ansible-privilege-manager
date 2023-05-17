@@ -6,6 +6,12 @@
 
 - block:
 
+    - fail:
+        msg: "Error: software_tmp_dir is empty string!"
+      when: not software_tmp_dir
+      register: result
+      run_once: true
+
     # Gather facts
     - include_tasks: gather_facts.yml
 
