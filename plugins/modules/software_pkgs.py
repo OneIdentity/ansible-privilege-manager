@@ -306,20 +306,21 @@ def run_normal(params, result):
         # Check directory
         err = check_dir(path)
 
-        # Check mode
-        err, sub_dirs = check_mode(mode)
-
-        # Find packages
         if err is None:
-            for sub_dir in sub_dirs:
-                err, p = find_packages(path, sub_dir, sys, dist, arch)
-                if err is None:
-                    packages.update(p)
-                else:
-                    break
+            # Check mode
+            err, sub_dirs = check_mode(mode)
 
-            if not err and not packages:
-                err = 'No packages found for sys=' + sys + ', dist=' + dist + ', arch=' + arch
+            # Find packages
+            if err is None:
+                for sub_dir in sub_dirs:
+                    err, p = find_packages(path, sub_dir, sys, dist, arch)
+                    if err is None:
+                        packages.update(p)
+                    else:
+                        break
+
+                if not err and not packages:
+                    err = 'No packages found for sys=' + sys + ', dist=' + dist + ', arch=' + arch
 
     except Exception:
         tb = traceback.format_exc()
@@ -346,6 +347,9 @@ def check_dir(path):
     """
     Check if software source directory exists
     """
+
+    if not path:
+        return 'Error: software_dir is empty string!'
 
     # Return value
     err = None

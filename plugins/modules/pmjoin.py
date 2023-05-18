@@ -136,6 +136,7 @@ import subprocess
 import traceback
 import re
 import ansible_collections.oneidentity.privilege_manager.plugins.module_utils.pmjoin as pmj
+from ansible_collections.oneidentity.privilege_manager.plugins.module_utils.misc_utils import enclose_shell_arg
 
 
 # ------------------------------------------------------------------------------
@@ -300,6 +301,12 @@ def run_pmjoin(
     changed = False
     output = ''
 
+    if not server:
+        return 'Error: join_server is empty string!', changed, output
+
+    if not password:
+        return 'Error: password is empty string!', changed, output
+
     # Check status to decide what to do
     status_server = pmj.pmjoin_status()
 
@@ -359,7 +366,7 @@ def run_pmjoin_join(
     cmd += ['-b']
     cmd += ['-a']
     cmd += ['-q']
-    cmd += [server]
+    cmd += [enclose_shell_arg(server)]
     cmd += [extra_args] if extra_args else []
 
     # Call vastool
