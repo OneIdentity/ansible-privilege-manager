@@ -79,9 +79,9 @@
     var data = [
       {% for policy in sudo_policies | sort %}
       {
-        'hostname': '{{ policy[0] }}',
-        'policyplugin': '{{ policy[1] }}',
-        'version': '{{ policy[2] }}'
+        'hostname': '{{ policy[0] | replace("'", '\\x27') }}',
+        'policyplugin': '{{ policy[1] | replace("'", '\\x27') }}',
+        'version': '{{ policy[2] | replace("'", '\\x27') }}'
       },
       {% endfor %}
     ];
