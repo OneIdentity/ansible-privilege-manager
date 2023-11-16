@@ -23,7 +23,7 @@ All of the variables shown below have a default value but can be overridden to s
     sudo_plugin
     ```
 
-* `software_tmp_dir` sets the temporary directory on Ansible hosts for storing files that need to be copied over to the hosts during software deployment operations.  The directory is created if it doesn't exist and is removed after all operations are completed.
+* `software_tmp_dir` sets the temporary directory on Ansible hosts for storing files that need to be copied over to the hosts during software deployment operations.  The directory is created if it doesn't exist.
 
     Default value is:
     ```yaml
