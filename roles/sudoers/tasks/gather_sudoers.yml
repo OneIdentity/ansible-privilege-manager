@@ -25,6 +25,8 @@
   when: sudoers_sudoers_mode == 'inline'
   delegate_to: localhost
   register: result
+  vars:
+    ansible_become: false
 
 # Fail if there was a message returned
 - fail:
@@ -37,4 +39,6 @@
     warn: false
   when: sudoers_sudoers_mode == 'inline'
   delegate_to: localhost
+  vars:
+    ansible_become: false
 
