@@ -12,6 +12,8 @@
   delegate_to: "{{ software_host }}"
   failed_when: false
   register: software_pkgs
+  vars:
+    ansible_become: false
 
 # Fail if there was a message returned
 - fail:
