@@ -10,7 +10,7 @@
     join_server: 10.10.10.10
     join_state: joined
     join_password: pass
-    join_extra_args:
+    join_extra_args: ''
 
     # Facts
     join_facts_generate: true

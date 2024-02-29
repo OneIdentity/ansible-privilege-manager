@@ -5,8 +5,8 @@
 
 # Valid options are: 'joined' or 'unjoined'
 join_state: joined
-join_password:
-join_extra_args:
+join_password: ''
+join_extra_args: ''
 
 
 # Facts settings

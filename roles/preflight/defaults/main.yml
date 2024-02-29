@@ -7,7 +7,7 @@
 # Valid options are: 'sudo', 'pmpolicy', 'server'
 preflight_mode: 'sudo'
 preflight_verbose: false
-preflight_extra_args:
+preflight_extra_args: ''
 
 
 # Facts settings

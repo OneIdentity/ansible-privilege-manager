@@ -18,7 +18,7 @@ software_tmp_dir: /tmp/1id
 # Join settings
 # ------------------------------------------------------------------------------
 
-join_server:
+join_server: ''
 
 
 # Facts settings

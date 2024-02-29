@@ -42,7 +42,7 @@ See [join settings variables](../common/README.md#join-settings) in the [`common
 
     Default value is:
     ```yaml
-    preflight_extra_args:
+    preflight_extra_args: ''
     ```
 
 ### Facts generation
@@ -141,7 +141,7 @@ Below is a sample playbook using the `preflight` role.
     # Preflight
     preflight_mode: sudo
     preflight_verbose: false
-    preflight_extra_args:
+    preflight_extra_args: ''
 
     # Directories
     software_dir: "./files/6.1.1.0"
