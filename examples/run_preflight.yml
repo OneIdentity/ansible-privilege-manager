@@ -12,7 +12,7 @@
     # Preflight
     preflight_mode: sudo
     preflight_verbose: false
-    preflight_extra_args:
+    preflight_extra_args: ''
 
     # Directories
     software_dir: "./files/6.1.1.0"

@@ -36,7 +36,7 @@ All of the variables shown below have a default value but can be overridden to s
 
     Default value is:
     ```yaml
-    join_server:
+    join_server: ''
     ```
 
 ### Facts generation

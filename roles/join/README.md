@@ -28,7 +28,7 @@ See [join variables](../common/README.md#join-settings) in the [`common`](../com
 
     Default value is:
     ```yaml
-    join_password:
+    join_password: ''
     ```
 
 ### Pmjoin Binary
@@ -37,7 +37,7 @@ See [join variables](../common/README.md#join-settings) in the [`common`](../com
 
     Default value is:
     ```yaml
-    join_extra_args:
+    join_extra_args: ''
     ```
 
 ### Facts generation
@@ -133,7 +133,7 @@ Below is a sample playbook using the `join` role.
     join_server: 10.10.10.10
     join_state: joined
     join_password: pass
-    join_extra_args:
+    join_extra_args: ''
 
     # Facts
     join_facts_generate: true
